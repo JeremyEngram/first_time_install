@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# BEGIN SCRIPT BANNER
+echo -n "	FIRST TIME INSTALL SCRIPT	"
+
+
+# EXAMPLE OF INLINE USE OF SUDO
+# sudo -s <<< 'apt update -y && apt upgrade -y'
+# sudo sh -c 'apt update -y && apt upgrade -y'
+
+
+# Do System Update & Upgrade
+sudo apt update && sudo apt upgrade
+
+# Install Filesystem Utilities And Dependencies 
+# sudo apt install -y fusefat fuse2fs gpart disktype exfat-fuse exfat-utils isolinux syslinux makebootfat ntfs-3g gparted testdisk
+
+# Install Audio Dependencies 
+sudo apt install -y libdvdnav4 libdvdread4 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libdvd-pkg && sudo apt install ubuntu-restricted-extras
+
+#Install System Backup Utilities For Deja
+sudo apt install -y duplicity python-gi 
+
+# Install User System Tools And Utilities
+sudo apt install -y git nmap baobab
+
+# Install User Shells
+sudo apt install -y terminator yakuake konsole fish
+
+# Install User Research Tools 
+sudo apt install -y calibre wkhtmltopdf libreoffice keepnote surfraw transcriber
+
+# Install User Entertainment Packages
+sudo apt install -y vlc 
+
+# Install System Tools
+sudo apt install -y synaptic unity-tweak-tool nautilus-scripts deja-dup 
+
+
+# Append Aliases To Bashrc
+sudo echo "alias blowoff='sudo apt clean && sudo apt autoremove && sudo apt purge'" >> ~/.bashrc
+sudo echo "alias update='sudo apt update'" >> ~/.bashrc
+sudo echo "alias upgrade='sudo apt upgrade'" >> ~/.bashrc
+sudo echo "alias url2pdf='wkhtmltopdf'" >> ~/.bashrc
+
+source ~/.bashrc
+
+
+
+# Remove Default Packages
+sudo apt remove --purge thunderbird thunderbird-gnome-support rhythmbox reminna shotwell simple-scan 
+
+
+# Take Ownership Of System Directories & Configurations
+sudo chown $USER:$USER /opt /usr/local/bin  
+
+
+
+# Install Brave Browser
+#sudo apt install apt-transport-https curl
+#curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+#echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+#sudo apt update
+#sudo apt install brave-browser
+
+
+# Install Offensive Framework?
+#sudo apt install -y ruby bundler gem postgres metasploit-framework
+
+
+# Install Optional Games
+sudo apt install -y crrcsim dreamchess
+
+
+# IS THERE ANY OTHER PACKAGES YOU WANT TO GET?
+read -p "APT INSTALL?: " pkg | sudo apt install -y $pkg
+
+
+# DO YOU WANT TO GIT ANY PACKAGES INTO /OPT DIR?
+cd /opt
+read -p "GIT: " gpkg | git clone $gpkg 
+
+
+# Clean Up System After First Time Install..
+sudo dpkg --configure -a 
+sudo apt update --fix-missing
+sudo apt clean
+sudo apt autoclean
+sudo apt autoremove
+
+echo -n "		CLEAN - DONE!		       "
+
+########################################################
+#			END			       #
+########################################################

@@ -1,0 +1,96 @@
+#!/bin/bash
+
+GITLIST="https://github.com/JeremyEngram/gitlist.git"
+
+# CHANGE OWNERSHIP OF DIRECTORIES
+sudo chown $USER:$USER /opt /usr/local/bin
+
+
+# GIT ALL PACKAGES IN LIST
+for i in /opt; do
+git clone $i
+done
+
+
+# RECURSE THROUGH /OPT DIRS FIND REQUIREMENTS.TXT AND DO PIP INSTALL
+sudo -H pip install -r /opt/arissploit/requirements.txt
+sudo -H pip install -r /opt/formphish/requirements.txt
+sudo -H pip install -r /opt/hiddeneye/requirements.txt
+sudo -H pip install -r /opt/lure/requirements.txt
+sudo -H pip install -r /opt/ngrokbackdoor/requirements.txt
+sudo -H pip install -r /opt/photon/requirements.txt
+sudo -H pip install -r /opt/set/requirements.txt
+sudo -H pip install -r /opt/socialfish/requirements.txt
+
+
+# ARM ALL SCRIPTS WITH SH OR PY [use find command to find all /opt/*/*.sh /opt/*/*.py]
+sudo chmod +x /opt/arissploit/install.sh
+sudo chmod +x /opt/arissploit/uninstall.sh
+sudo chmod +x /opt/AutoNSE/autonse.sh
+sudo chmod +x /opt/blackngrokeye/blackeye.sh
+sudo chmod +x /opt/evilapp/evilapp.sh
+sudo chmod +x /opt/evilapp/install.sh
+sudo chmod +x /opt/formphish/formphish.sh
+sudo chmod +x /opt/lockphish/lockphish.sh
+sudo chmod +x /opt/mercury/requirements.sh
+sudo chmod +x /opt/socialbox/install-sb.sh
+sudo chmod +x /opt/socialbox/SocialBox.sh
+sudo chmod +x /opt/socialsploit/install.sh
+sudo chmod +x /opt/sploitgen/Androidupdate.sh
+sudo chmod +x /opt/sploitgen/sploitgen.sh
+sudo chmod +x /opt/sploitgen/sploitgentermux.sh
+
+sudo chmod +x /opt/arissploit/api.py
+sudo chmod +x /opt/formphish/extract_input.py
+sudo chmod +x /opt/hiddeneye/HiddenEye.py
+sudo chmod +x /opt/lure/lure.py
+sudo chmod +x /opt/mercury/Mercury.py
+sudo chmod +x /opt/ngrokbackdoor/grok-backdoor.py
+sudo chmod +x /opt/ngrokbackdoor/readconf.py
+sudo chmod +x /opt/ngrokbackdoor/server.py
+sudo chmod +x /opt/photon/photon.py
+sudo chmod +x /opt/set/setup.py
+sudo chmod +x /opt/socialfish/__init__.py
+sudo chmod +x /opt/socialfish/socialfish.py
+
+
+# CREATE MY MENU SELECT NCURSES INTERFACE
+wget https://github.com/JeremyEngram/myscriptsmenu
+
+
+# MAKE DESKTOP ICON AND LAUNCHER FOR MENU
+echo "
+[Desktop Entry]
+Type=Application
+Terminal=true
+Name=MyScriptsMenu
+Icon=/usr/share/icons/myscriptsmenu.png
+Exec=/usr/local/bin/myscriptsmenu
+" >> sudo -i /usr/share/applications/myscriptsmenu.desktop
+
+
+
+# CREATE SYMLINKS
+ln -s /opt/evilapp/evilapp.sh $USRBIN/evilapp
+ln -s /opt/Evil-Droid/evildroid $USRBIN/evildroid
+ln -s /opt/formphish/formphish.sh /usr/local/bin/formphish
+ln -s /opt/AutoNSE/autonse.sh /usr/local/bin/autonse
+ln -s /opt/hiddeneye/HiddenEye.py /usr/local/bin/autonse
+ln -s /opt/hiddeneye/HiddenEye.py /usr/local/bin/hiddeneye
+ln -s /opt/sploitgen/sploitgen.sh /usr/local/bin/sploitgen
+ln -s /opt/socialsploit/Sploit /usr/local/bin/socialsploit
+ln -s /opt/socialfish/socialfish.py /usr/local/bin/socialfish
+ln -s /opt/socialbox/SocialBox.sh /usr/local/bin/socialbox
+ln -s /opt/set/setoolkit /usr/local/bin/set
+ln -s /opt/photon/photon.py /usr/local/bin/photon
+ln -s /opt/ngrokbackdoor/grok-backdoor.py /usr/local/bin/ngrokbackdoor
+ln -s /opt/mercury/Mercury.py /usr/local/bin/mercury
+ln -s /opt/lure/lure.py /usr/local/bin/lure
+ln -s /opt/lockphish/lockphish.sh /usr/local/bin/lockphish
+ln -s /opt/BeeF-Over-Wan/BeeFOverWan.py /usr/local/bin/beefwan
+ln -s /opt/blackngrokeye/blackeye.sh /usr/local/bin/backeye
+ln -s /opt/arissploit/arissploit /usr/local/bin/arissploit
+ln -s /opt/nexphisher/nexphisher /usr/local/bin/nexphisher
+
+
+
