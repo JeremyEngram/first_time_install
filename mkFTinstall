@@ -42,6 +42,8 @@ sudo echo "alias blowoff='sudo apt clean && sudo apt autoremove && sudo apt purg
 sudo echo "alias update='sudo apt update'" >> ~/.bashrc
 sudo echo "alias upgrade='sudo apt upgrade'" >> ~/.bashrc
 sudo echo "alias url2pdf='wkhtmltopdf'" >> ~/.bashrc
+sudo echo "alias dropin='sudo apt install -y'" >> ~/.bashrc
+sudo echo "alias dropoff='sudo apt remove -y'" >> ~/.bashrc
 
 source ~/.bashrc
 
@@ -75,6 +77,10 @@ wget http://sourceforge.net/projects/pdf2mp3/pdf3mp3*.tar.gz
 tar xvf pdf3mp3*.tar.gz
 sudo chmod +x pdf2mp3
 sudo cp pdf2mp3 /usr/bin/
+
+# Install Paralatype Transscribtion Tool
+sudo add-apt-repository ppa:gabor-karsay/parlatype && sudo apt-get update && sudo apt install parlatype
+
 
 # IS THERE ANY OTHER PACKAGES YOU WANT TO GET?
 read -p "APT INSTALL?: " pkg | sudo apt install -y $pkg
