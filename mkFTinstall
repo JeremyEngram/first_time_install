@@ -68,9 +68,13 @@ sudo chown $USER:$USER /opt /usr/local/bin
 #sudo apt install -y ruby bundler gem postgres metasploit-framework
 
 
-# Install Optional Games
-sudo apt install -y crrcsim dreamchess
-
+# Install PDF2MP3 Research Tool
+sudo apt install -y libttspico-utils python poppler-utils festival festvox-rablpc16k lame
+firefox http://sourceforge.net/projects/pdf2mp3/pdf3mp3*.tar.gz
+wget http://sourceforge.net/projects/pdf2mp3/pdf3mp3*.tar.gz
+tar xvf pdf3mp3*.tar.gz
+sudo chmod +x pdf2mp3
+sudo cp pdf2mp3 /usr/bin/
 
 # IS THERE ANY OTHER PACKAGES YOU WANT TO GET?
 read -p "APT INSTALL?: " pkg | sudo apt install -y $pkg
